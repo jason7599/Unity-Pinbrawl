@@ -15,9 +15,8 @@ public abstract class Entity : MonoBehaviour
         else if (!nextTile.isOccupied)
         {
             // TEMP. Add animations or smth later
-            // transform.position = nextTile.transform.position;
-            StartCoroutine(transform.SmoothMoveTo(nextTile.transform.position, 0.15f));
             SetTile(nextTile);
+            StartCoroutine(transform.SmoothMoveTo(nextTile.transform.position, 0.15f));
         }
     }
 

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class GameManager : Singleton<GameManager>
@@ -23,20 +24,30 @@ public class GameManager : Singleton<GameManager>
     private Camera _cam; // TEMP
     private int _level = 0;
     
-    void Start()
+    private void Start()
     {
         _cam = Camera.main;
+        _player.OnPlayerTurnFinished += AdvanceLevel;
+
+        AdvanceLevel();
     }
 
-    public void OnPlayerTurnFinish()
+    private void AdvanceLevel() => StartCoroutine(AdvanceLevelRoutine());
+
+    private IEnumerator AdvanceLevelRoutine()
     {
         _level++;
 
-        _entities.Advance();
+        yield return StartCoroutine(_entities.AdvanceRoutine());
+
+        _levelsText.text = $"{_level}";
+        
+        yield return new WaitForSeconds(0.5f);
 
         SpawnEntities();
 
-        _levelsText.text = $"{_level}";
+        yield return new WaitForSeconds(0.25f);
+
         _player.OnPlayerTurnStart();
     }
 

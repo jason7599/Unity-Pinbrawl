@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class Entities : MonoBehaviour
@@ -16,14 +17,17 @@ public class Entities : MonoBehaviour
         return entity;
     }
 
-    public void Advance()
+    public IEnumerator AdvanceRoutine()
     {
+        if (activeCount == 0) yield break;
+
         _entities.RemoveAll(entity => entity == null || entity.currentTile == null); // filter out nulls
         _entities.Sort(_comp); // sort by tile 
         
         foreach (Entity entity in _entities)
         {
             entity.Advance();
+            yield return new WaitForSeconds(0.025f);
         }
     }
 

@@ -1,4 +1,5 @@
 using TMPro;
+using System;
 using UnityEngine;
 using UnityEditor;
 using System.Collections;
@@ -25,6 +26,8 @@ public class Player : MonoBehaviour
     private int _ballsReturned;
     private int _ballCount; 
 
+    public Action OnPlayerTurnFinished;
+
     private void Start()
     {
         for (int i = 0; i < _startingBallCount; i++)
@@ -36,8 +39,6 @@ public class Player : MonoBehaviour
         _aim.enabled = false;
 
         _ballCountText.text = $"x {_startingBallCount}";
-
-        GameManager.Instance.OnPlayerTurnFinish();
     }
 
     private void Update()
@@ -99,14 +100,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    private IEnumerator TurnFinishRoutine()
+    private IEnumerator TurnFinishRoutine() // move to entry ball pos and notify turn finish
     {
         Vector3 dest = transform.position;
         dest.x = Mathf.Clamp(_entryBallX, -_playerMoveXLimit, _playerMoveXLimit);
 
         yield return StartCoroutine(transform.SmoothMoveTo(dest, .25f));
 
-        GameManager.Instance.OnPlayerTurnFinish();
+        OnPlayerTurnFinished?.Invoke();
     }
 
     public void OnPlayerTurnStart()

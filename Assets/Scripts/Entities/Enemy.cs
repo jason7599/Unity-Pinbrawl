@@ -70,8 +70,8 @@ public class Enemy : Entity
 
     private void CloseAttack()
     {
-        transform.LookAt(GameManager.player.transform);
         _anim.SetTrigger(_attackTriggerHash);
+        StartCoroutine(transform.SmoothMoveTo(GameManager.player.transform.position + Vector3.forward * 2, 0.1f));
 
         DestroyThis(0.5f);
     }
