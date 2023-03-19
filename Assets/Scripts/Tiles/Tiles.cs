@@ -32,7 +32,7 @@ public class Tiles : MonoBehaviour
 
         if (tileHolder != null)
         {  
-            print("Detected previous tileholder. Destroying and making new");
+            // print("Detected previous tileholder. Destroying and making new");
             DestroyImmediate(tileHolder.gameObject);
         } 
 

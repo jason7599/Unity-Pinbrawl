@@ -25,8 +25,8 @@ public class Tile : MonoBehaviour
         return $"Tile {rowIndex}, {columnIndex}";
     }
 
-    private void OnDrawGizmos()
-    {
-        Handles.Label(transform.position, $"{rowIndex}, {columnIndex}");
-    }
+    // private void OnDrawGizmos()
+    // {
+    //     Handles.Label(transform.position, $"{rowIndex}, {columnIndex}");
+    // }
 }
