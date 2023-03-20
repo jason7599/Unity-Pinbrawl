@@ -1,12 +1,11 @@
 using TMPro;
-using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 public class GameManager : Singleton<GameManager>
 {
-    public Action OnPlayerTurnStart;
+    public System.Action OnPlayerTurnStart;
 
     [SerializeField] private Player _player;
     [SerializeField] private Tiles _tiles;
@@ -16,7 +15,7 @@ public class GameManager : Singleton<GameManager>
     public static Tiles tiles { get { return Instance._tiles; } }
     public static Entities entities { get { return Instance._entities; } }
 
-    [SerializeField] private Enemy _enemyPrefab;
+    [SerializeField] private Enemy[] _enemyPrefabs;
     [SerializeField] private BonusBall _bonusBallPrefab;
     [SerializeField] private PowerUpBox _powerUpBoxPrefab;
 
@@ -62,7 +61,7 @@ public class GameManager : Singleton<GameManager>
 
         foreach (Tile tile in spawnableTiles) // try to spawn at least _enemySpawnCount enemies
         {
-            _entities.Spawn(_enemyPrefab, tile).SetMaxHealth(3 * _level);
+            _entities.Spawn(_enemyPrefabs[Random.Range(0, _enemyPrefabs.Length)], tile).SetMaxHealth(3 * _level);
             if (++spawnedCount >= _enemySpawnCount)
                 break;
         }
@@ -87,7 +86,7 @@ public class GameManager : Singleton<GameManager>
                 if (tile.isOccupied == false)
                 {
                     // tile.SpawnEntity(_enemyPrefab);
-                    Enemy enemy = _entities.Spawn(_enemyPrefab, tile);
+                    Enemy enemy = _entities.Spawn(_enemyPrefabs[Random.Range(0, _enemyPrefabs.Length)], tile);
                 }
                 else
                 {
