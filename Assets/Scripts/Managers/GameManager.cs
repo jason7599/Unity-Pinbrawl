@@ -1,10 +1,13 @@
 using TMPro;
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 public class GameManager : Singleton<GameManager>
 {
+    public Action OnPlayerTurnStart;
+
     [SerializeField] private Player _player;
     [SerializeField] private Tiles _tiles;
     [SerializeField] private Entities _entities;
@@ -48,7 +51,7 @@ public class GameManager : Singleton<GameManager>
 
         yield return new WaitForSeconds(0.25f);
 
-        _player.OnPlayerTurnStart();
+        OnPlayerTurnStart?.Invoke();
     }
 
     private void SpawnEntities()

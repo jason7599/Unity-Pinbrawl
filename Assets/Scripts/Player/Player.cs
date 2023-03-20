@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.OnPlayerTurnStart += OnPlayerTurnStart;
+
         for (int i = 0; i < _startingBallCount; i++)
         {
             AddBall();
@@ -110,7 +112,7 @@ public class Player : MonoBehaviour
         OnPlayerTurnFinished?.Invoke();
     }
 
-    public void OnPlayerTurnStart()
+    private void OnPlayerTurnStart()
     {
         _ballCountText.text = $"x {_balls.Count}";
         _playerTurn = true;

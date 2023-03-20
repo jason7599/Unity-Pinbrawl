@@ -6,6 +6,8 @@ public abstract class Entity : MonoBehaviour
 
     public void Advance()
     {
+        // ranged attack
+
         Tile nextTile = GameManager.tiles.TileBelow(currentTile); // TODO: abstract 
 
         if (nextTile == null)
