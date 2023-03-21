@@ -17,9 +17,6 @@ public class Player : MonoBehaviour
 
     [SerializeField] private TMP_Text _ballCountText;
 
-    private AimController _aim;
-    
-    private bool _playerTurn = false;
     private float _entryBallX;
 
     private List<Ball> _balls = new List<Ball>();
@@ -37,29 +34,7 @@ public class Player : MonoBehaviour
             AddBall();
         }
 
-        _aim = GetComponent<AimController>();
-        _aim.enabled = false;
-
         _ballCountText.text = $"x {_startingBallCount}";
-    }
-
-    private void Update()
-    {
-        if (!_playerTurn) return;
-    
-        if (Input.GetMouseButtonDown(1)) 
-        {
-            _aim.enabled = true;
-        }
-        else if (Input.GetMouseButtonUp(1))
-        {
-            _aim.enabled = false;
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Shoot();
-        }
     }
 
     public void AddBall(Ball ball = null)
@@ -69,11 +44,8 @@ public class Player : MonoBehaviour
         _balls.Add(ball);
     }
 
-    private void Shoot()
+    public void Shoot()
     {
-        _playerTurn = false;
-        _aim.enabled = false;
-
         _ballCount = _balls.Count; // length could increase mid shooting
         _ballsReturned = 0;
 
@@ -102,20 +74,19 @@ public class Player : MonoBehaviour
         }
     }
 
-    private IEnumerator TurnFinishRoutine() // move to entry ball pos and notify turn finish
+    private IEnumerator TurnFinishRoutine() // move to entry ball pos
     {
         Vector3 dest = transform.position;
         dest.x = Mathf.Clamp(_entryBallX, -_playerMoveXLimit, _playerMoveXLimit);
 
         yield return StartCoroutine(transform.SmoothMoveTo(dest, .25f));
 
-        OnPlayerTurnFinished?.Invoke();
+        GameManager.Instance.AdvanceLevel();
     }
 
-    private void OnPlayerTurnStart()
+    private void OnPlayerTurnStart() // called on advancelevel finish
     {
         _ballCountText.text = $"x {_balls.Count}";
-        _playerTurn = true;
     }
 
     private void OnDrawGizmosSelected()

@@ -2432,15 +2432,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2511645754614568900, guid: 327831f749b0dbd40a4bbf3f823a2412, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2511645754614568900, guid: 327831f749b0dbd40a4bbf3f823a2412, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5073446062025310944, guid: 327831f749b0dbd40a4bbf3f823a2412, type: 3}
       propertyPath: m_Name
       value: Skeleton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073446062025310944, guid: 327831f749b0dbd40a4bbf3f823a2412, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5073446062025310947, guid: 327831f749b0dbd40a4bbf3f823a2412, type: 3}
       propertyPath: m_RootOrder
@@ -6544,9 +6548,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1294368852}
-  - component: {fileID: 1294368853}
-  - component: {fileID: 1294368854}
   - component: {fileID: 1294368855}
+  - component: {fileID: 1294368853}
+  - component: {fileID: 1294368857}
+  - component: {fileID: 1294368856}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -6590,22 +6595,6 @@ MonoBehaviour:
   _startingBallCount: 3
   _playerMoveXLimit: 2.5
   _ballCountText: {fileID: 595463134}
---- !u!114 &1294368854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1294368851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c576627fbcecc1488d4ae41db9533eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _aimStartPoint: {fileID: 971275291}
-  _aimCircle: {fileID: 1780751199}
-  _aimCircleRadius: 0.0625
-  _aimZLimit: -2.5
 --- !u!120 &1294368855
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -6714,6 +6703,33 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &1294368856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294368851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e03744368b7af44b5c1e3dfaf86903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _aimRayOrigin: {fileID: 971275291}
+  _aimCircle: {fileID: 1780751199}
+  _aimCircleRadius: 0.0625
+--- !u!114 &1294368857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294368851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eefdf76943c74c41bc3c71a148e3e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1295703409
 GameObject:
   m_ObjectHideFlags: 0
