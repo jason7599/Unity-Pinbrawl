@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 public class Player : MonoBehaviour
 {
+
     [SerializeField] private Transform _ballShootTr;
     [SerializeField] private float _shootInterval = 0.1f;
     
@@ -97,5 +98,6 @@ public class Player : MonoBehaviour
         Gizmos.DrawLine(xLimitStart, xLimitStart + Vector3.right * _playerMoveXLimit * 2);
         Handles.Label(xLimitStart, "player move constraints");
     }
+
 
 }

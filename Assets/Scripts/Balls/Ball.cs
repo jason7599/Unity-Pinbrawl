@@ -48,6 +48,9 @@ public class Ball : MonoBehaviour
                 if (hitObject.layer == (int)Layers.Entity)
                 {
                     // TODO: maybe a dictionary for optimization
+
+                    Combo.Increment();
+                    
                     OnEntityHit(hitObject.GetComponent<Entity>());
                 }
             }

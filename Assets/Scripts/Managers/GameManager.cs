@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,24 +9,29 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private Player _player;
     [SerializeField] private Tiles _tiles;
     [SerializeField] private Entities _entities;
+    [SerializeField] private GameUI _ui;
+
 
     public static Player player { get { return Instance._player; } }
     public static Tiles tiles { get { return Instance._tiles; } }
     public static Entities entities { get { return Instance._entities; } }
+    public static GameUI ui { get { return Instance._ui; } }
+
 
     [SerializeField] private Enemy[] _enemyPrefabs;
     [SerializeField] private BonusBall _bonusBallPrefab;
     [SerializeField] private PowerUpBox _powerUpBoxPrefab;
 
-    [SerializeField] private TMP_Text _levelsText;
-
     [SerializeField] private int _enemySpawnCount = 3;
 
     private Camera _cam; // TEMP
+
     private int _level = 0;
     
     private void Start()
     {
+        Combo.Reset();
+
         _cam = Camera.main;
 
         AdvanceLevel();
@@ -37,11 +41,11 @@ public class GameManager : Singleton<GameManager>
 
     private IEnumerator AdvanceLevelRoutine()
     {
-        _level++;
+        Combo.Reset();
 
         yield return StartCoroutine(_entities.AdvanceRoutine());
 
-        _levelsText.text = $"{_level}";
+        _ui.SetLevel(++_level);
         
         yield return new WaitForSeconds(0.5f);
 

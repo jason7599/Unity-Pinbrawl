@@ -4,6 +4,8 @@ public abstract class Entity : MonoBehaviour
 {
     public Tile currentTile { get; private set; }
 
+    
+
     public virtual void Advance()
     {
         Tile nextTile = GameManager.tiles.TileBelow(currentTile); // TODO: abstract 
