@@ -34,10 +34,12 @@ public class GameManager : Singleton<GameManager>
 
         _cam = Camera.main;
 
+        player.OnPlayerTurnFinished += AdvanceLevel;
+        
         AdvanceLevel();
     }
 
-    public void AdvanceLevel() => StartCoroutine(AdvanceLevelRoutine());
+    private void AdvanceLevel() => StartCoroutine(AdvanceLevelRoutine());
 
     private IEnumerator AdvanceLevelRoutine()
     {

@@ -1,14 +1,19 @@
 using UnityEngine;
+using System.Collections;
 
 public class RangedEnemy : Enemy
 {
     [SerializeField] private GameObject _projectilePrefab;
 
-    public override void Advance() // attack before moving 
+    private void Start()
+    {
+        preAdvancePriority = PreAdvancePriority.First;
+    }
+
+    public override IEnumerator PreAdvanceRoutine()
     {
         Attack();
-
-        base.Advance(); 
+        yield return new WaitForSeconds(0.1f);
     }
 
     protected override void Attack()

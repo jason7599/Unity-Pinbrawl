@@ -6850,7 +6850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e03744368b7af44b5c1e3dfaf86903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _aimRayOrigin: {fileID: 971275291}
+  _aimPlaneYLevel: 1
   _aimCircle: {fileID: 1780751199}
   _aimCircleRadius: 0.0625
 --- !u!114 &1294368857
@@ -10684,7 +10684,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4846222938379217851, guid: bc5150ae98e083a42948d0662d2735ba, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bc5150ae98e083a42948d0662d2735ba, type: 3}
 --- !u!4 &9005570656449493893
 Transform:
@@ -10720,8 +10721,7 @@ MonoBehaviour:
   _enemyPrefabs:
   - {fileID: 6808502826964406882, guid: 327831f749b0dbd40a4bbf3f823a2412, type: 3}
   - {fileID: 6026251753501281055, guid: b0bddb72fec8ef841a1b1681aca099ac, type: 3}
-  - {fileID: 4846222938379217851, guid: bc5150ae98e083a42948d0662d2735ba, type: 3}
-  - {fileID: 8774696086432570581, guid: 61906d978bb541f4f95fb8bf4a10ca5e, type: 3}
+  - {fileID: 1060064244633827930, guid: bc5150ae98e083a42948d0662d2735ba, type: 3}
   _bonusBallPrefab: {fileID: 3248297716231949868, guid: 389a50f39b87c8d4f80703f40114692b, type: 3}
   _powerUpBoxPrefab: {fileID: 3114473351132030309, guid: ac241d1417b45ac419ea7a65bfb1fe43, type: 3}
   _enemySpawnCount: 3

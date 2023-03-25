@@ -15,7 +15,7 @@ public class Combo
     {
         ++_hitCombo;
 
-        // TODO: 
+        // TODO: combo bonus stuff
 
         GameManager.ui.SetCombo(_hitCombo);
     }

@@ -1,18 +1,22 @@
 using UnityEngine;
+using System.Collections;
+
+public enum PreAdvancePriority { None, First, Second }
 
 public abstract class Entity : MonoBehaviour
 {
     public Tile currentTile { get; private set; }
-
     
+    public PreAdvancePriority preAdvancePriority { get; protected set; } = PreAdvancePriority.None;
+    public virtual IEnumerator PreAdvanceRoutine() { yield break; }
 
-    public virtual void Advance()
+    public void Advance()
     {
         Tile nextTile = GameManager.tiles.TileBelow(currentTile); // TODO: abstract 
 
         if (nextTile == null)
         {
-            OnPlayerZoneEnter();
+            OnPlayerZoneEnter(); // COROUTINE
         }
         else if (!nextTile.isOccupied)
         {

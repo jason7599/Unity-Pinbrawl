@@ -13,6 +13,7 @@ public class PowerUpBox : Entity
         Ball randomBallPrefab = _ballPrefabs[Random.Range(0, _ballPrefabs.Length)];
         print($"congrats! you got {randomBallPrefab.name}");
         GameManager.player.AddBall(Instantiate(randomBallPrefab));
+        
         DestroyThis();
     }
 }

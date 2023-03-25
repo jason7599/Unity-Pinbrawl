@@ -606,7 +606,7 @@ GameObject:
   - component: {fileID: 6581192241733843770}
   - component: {fileID: 6581192241733843771}
   - component: {fileID: 6581192241733843773}
-  - component: {fileID: 4846222938379217851}
+  - component: {fileID: 1060064244633827930}
   m_Layer: 8
   m_Name: Mage
   m_TagString: Untagged
@@ -663,7 +663,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &4846222938379217851
+--- !u!114 &1060064244633827930
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -672,13 +672,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6581192241733843769}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 085aadee95e8f8e47aa6f9f384211fed, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a337c3350815444b8da002c8062e867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 100
   _bloodEffect: {fileID: 6196903898489794882, guid: 0d1d643fcc5d3fd47a1b067fc80a38d4, type: 3}
   _healthBar: {fileID: 4604578397689262251}
   _healthText: {fileID: 53623592135765966}
+  _spawnEnemy: {fileID: 8774696086432570581, guid: 61906d978bb541f4f95fb8bf4a10ca5e, type: 3}
 --- !u!1 &6581192242305001440
 GameObject:
   m_ObjectHideFlags: 0

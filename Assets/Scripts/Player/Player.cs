@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
 
         yield return StartCoroutine(transform.SmoothMoveTo(dest, .25f));
 
-        GameManager.Instance.AdvanceLevel();
+        OnPlayerTurnFinished?.Invoke();
     }
 
     private void OnPlayerTurnStart() // called on advancelevel finish

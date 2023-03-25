@@ -7,7 +7,7 @@ public class Entities : MonoBehaviour
     private List<Entity> _entities = new List<Entity>();
     public int activeCount { get { return _entities.Count; } }
 
-    private EntityAdvanceOrder _comp = new EntityAdvanceOrder();
+    private EntityAdvanceOrder _advanceOrder = new EntityAdvanceOrder();
 
     public T Spawn<T>(T entityPrefab, Tile tile) where T : Entity
     {
@@ -19,15 +19,34 @@ public class Entities : MonoBehaviour
 
     public IEnumerator AdvanceRoutine()
     {
+        _entities.RemoveAll(entity => entity == null || entity.currentTile == null);
+
         if (activeCount == 0) yield break;
 
-        _entities.RemoveAll(entity => entity == null || entity.currentTile == null); // filter out nulls
-        _entities.Sort(_comp); // sort by tile 
-        
+        List<Entity> preAdvanceFirst = new List<Entity>();
+        List<Entity> preAdvanceSecond = new List<Entity>();
+
+        foreach (Entity entity in _entities)
+        {
+            if (entity.preAdvancePriority == PreAdvancePriority.First) preAdvanceFirst.Add(entity);
+            else if (entity.preAdvancePriority == PreAdvancePriority.Second) preAdvanceSecond.Add(entity);
+        }
+
+        foreach (Entity entity in preAdvanceFirst)
+        {
+            yield return StartCoroutine(entity.PreAdvanceRoutine());
+        }
+        foreach (Entity entity in preAdvanceSecond)
+        {
+            yield return StartCoroutine(entity.PreAdvanceRoutine());
+        }
+
+        _entities.RemoveAll(entity => entity == null || entity.currentTile == null); 
+        _entities.Sort(_advanceOrder); // sort by tile 
+
         foreach (Entity entity in _entities)
         {
             entity.Advance();
-            yield return new WaitForSeconds(0.025f);
         }
     }
 
